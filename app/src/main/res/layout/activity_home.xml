@@ -19,8 +19,15 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Installation"
+            android:text="Installation (NOT COMPLETED)"
             android:id="@+id/installation_activity_button"
+            android:layout_gravity="center_horizontal" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Configuration"
+            android:id="@+id/configuration_activity_button"
             android:layout_gravity="center_horizontal" />
     </LinearLayout>
 </RelativeLayout>

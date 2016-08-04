@@ -26,5 +26,16 @@ public class HomeActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        Button startConfiguration = (Button) findViewById(R.id.configuration_activity_button);
+        assert startConfiguration != null;
+        startConfiguration.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+//                attemptLogin();
+                Intent intent = new Intent(current, ConfigurationActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 }
