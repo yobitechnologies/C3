@@ -4,10 +4,27 @@
     android:layout_height="match_parent"
     tools:context=".InstallationActivity">
 
-    <!-- TODO: Update blank fragment layout -->
+    <RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center">
+
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="TODO: Create page for setting carrier" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal|top"
+        android:text="What service provider is best?"
+        android:id="@+id/ask_service_provider_text"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        <Spinner
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/service_provider_spinner"
+            android:layout_below="@+id/ask_service_provider_text"
+            android:layout_centerHorizontal="true" />
+
+
+    </RelativeLayout>
 
 </FrameLayout>

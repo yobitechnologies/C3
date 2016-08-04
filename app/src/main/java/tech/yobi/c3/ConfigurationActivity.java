@@ -19,8 +19,15 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ConfigurationActivity extends AppCompatActivity {
 
@@ -176,7 +183,9 @@ public class ConfigurationActivity extends AppCompatActivity {
     /**
      * Fragment for setting the carrier
      */
-    public static class SetCarrierFragment extends Fragment {
+    public static class SetCarrierFragment extends Fragment implements OnItemSelectedListener {
+
+        Spinner serviceProviderSpinner;
 
         public SetCarrierFragment() {
         }
@@ -195,7 +204,35 @@ public class ConfigurationActivity extends AppCompatActivity {
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_set_carrier, container, false);
+            serviceProviderSpinner = (Spinner) rootView.findViewById(R.id.service_provider_spinner);
+            serviceProviderSpinner.setOnItemSelectedListener(this);
+
+            List<String> providers = new ArrayList<String>();
+            providers.add("Airtel");
+            providers.add("Vodafone");
+
+            ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, providers);
+            // Specify the layout to use when the list of choices appears
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            // Apply the adapter to the spinner
+            serviceProviderSpinner.setAdapter(adapter);
+
             return rootView;
+        }
+
+        @Override
+        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+            String serviceProvider = parent.getItemAtPosition(position).toString();
+            configurationManager.setCarrier(serviceProvider);
+            Log.e("Service Provider", configurationManager.getCarrier());
+
+        }
+
+        @Override
+        public void onNothingSelected(AdapterView<?> parent) {
+            String serviceProvider = parent.getItemAtPosition(0).toString();
+            configurationManager.setCarrier(serviceProvider);
+            Log.e("Service Provider", configurationManager.getCarrier());
         }
     }
 
