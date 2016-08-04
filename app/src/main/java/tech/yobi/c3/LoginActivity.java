@@ -92,7 +92,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             @Override
             public void onClick(View view) {
 //                attemptLogin();
-                Log.e("Event","Button clicked!!!!!!!");
                 Intent intent = new Intent(current, HomeActivity.class);
                 startActivity(intent);
             }
