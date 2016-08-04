@@ -10,6 +10,8 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -17,9 +19,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import android.widget.EditText;
 import android.widget.TextView;
 
 public class ConfigurationActivity extends AppCompatActivity {
+
+    static ConfigurationManager configurationManager = new ConfigurationManager();
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -52,15 +57,6 @@ public class ConfigurationActivity extends AppCompatActivity {
         mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
 
     }
 
@@ -121,6 +117,32 @@ public class ConfigurationActivity extends AppCompatActivity {
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_set_id, container, false);
+            EditText idText = (EditText) rootView.findViewById(R.id.id_text);
+
+            idText.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                }
+
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+                    int id;
+                    try {
+                        id = Integer.parseInt(s.toString());
+                    } catch (Exception e) {
+                        id = 0;
+                    }
+
+                    configurationManager.setId(id);
+                    Log.e("ID Changed", (Integer.valueOf(configurationManager.getId())).toString());
+                }
+
+                @Override
+                public void afterTextChanged(Editable s) {
+
+                }
+            });
             return rootView;
         }
     }
@@ -199,6 +221,26 @@ public class ConfigurationActivity extends AppCompatActivity {
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_set_number, container, false);
+            EditText simNumText = (EditText) rootView.findViewById(R.id.sim_num_text);
+
+            simNumText.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                }
+
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+                    String sim_number = s.toString();
+                    configurationManager.setSimNumber(sim_number);
+                    Log.e("Sim Number Changed", (configurationManager.getSimNumber()));
+                }
+
+                @Override
+                public void afterTextChanged(Editable s) {
+
+                }
+            });
             return rootView;
         }
     }
