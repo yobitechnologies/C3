@@ -275,7 +275,7 @@ public class ConfigurationActivity extends AppCompatActivity implements Location
                         latText.setText(Double.toString(curr_latitude));
                         lngText.setText(Double.toString(curr_longitude));
                         configurationManager.setLatitude(curr_latitude);
-                        configurationManager.setLongitude(curr_latitude);
+                        configurationManager.setLongitude(curr_longitude);
                         String name;
                         try {
                             Address location = geocoder.getFromLocation(curr_latitude, curr_longitude, 1).get(0);
