@@ -4,10 +4,81 @@
     android:layout_height="match_parent"
     tools:context=".InstallationActivity">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="TODO: Create page for setting name and location" />
+        android:layout_gravity="center">
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal|top"
+            android:text="Name"
+            android:id="@+id/ask_name_text"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        <EditText
+            android:id="@+id/name_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal|top"
+            android:inputType="text"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_toRightOf="@+id/ask_name_text"
+            android:layout_toEndOf="@+id/ask_name_text" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal|top"
+            android:text="Latitude"
+            android:id="@+id/ask_lat_text"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:layout_below="@+id/name_text"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <EditText
+            android:id="@+id/lat_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal|top"
+            android:inputType="text"
+            android:layout_alignTop="@+id/ask_lat_text"
+            android:layout_toRightOf="@+id/ask_lat_text"
+            android:layout_alignRight="@+id/name_text"
+            android:layout_alignEnd="@+id/name_text" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal|top"
+            android:text="Longitude"
+            android:id="@+id/ask_lng_text"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:layout_below="@+id/lat_text"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <EditText
+            android:id="@+id/lng_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal|top"
+            android:inputType="text"
+            android:layout_alignTop="@+id/ask_lng_text"
+            android:layout_toRightOf="@+id/ask_lng_text"
+            android:layout_alignRight="@+id/name_text"
+            android:layout_alignEnd="@+id/name_text" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Generate from GPS"
+            android:id="@+id/get_loc_button"
+            android:layout_below="@+id/lng_text"
+            android:layout_centerHorizontal="true" />
+
+
+    </RelativeLayout>
 </FrameLayout>

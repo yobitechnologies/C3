@@ -209,6 +209,11 @@ public class ConfigurationActivity extends AppCompatActivity {
 
             List<String> providers = new ArrayList<String>();
             providers.add("Airtel");
+            providers.add("Aircel");
+            providers.add("BSNL");
+            providers.add("Idea");
+            providers.add("Reliance");
+            providers.add("Tata Docomo");
             providers.add("Vodafone");
 
             ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, providers);
