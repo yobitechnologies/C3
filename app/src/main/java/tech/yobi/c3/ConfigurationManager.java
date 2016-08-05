@@ -10,11 +10,11 @@ public class ConfigurationManager {
     private String carrier;
 
     public ConfigurationManager() {
-        name = "Not set";
-        latitude = 0;
-        longitude = 0;
-        simNumber = "Not set";
-        carrier = "Not set";
+//        name = "Not set";
+//        latitude = 0;
+//        longitude = 0;
+//        simNumber = "Not set";
+//        carrier = "Not set";
     }
 
     public int getId() {

@@ -4,10 +4,171 @@
     android:layout_height="match_parent"
     tools:context=".InstallationActivity">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="TODO: Create page for confirming details" />
+        android:layout_height="match_parent">
+
+
+        <TextView
+            android:id="@+id/confirm_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center_horizontal|top"
+            android:text="Confirmation"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        <TextView
+            android:id="@+id/confirm_id_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/confirm_text"
+            android:layout_gravity="center_horizontal|top"
+            android:text="ID: "
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        <TextView
+            android:id="@+id/confirm_id_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/confirm_text"
+            android:layout_gravity="center_horizontal|top"
+            android:layout_toEndOf="@+id/confirm_id_label"
+            android:layout_toRightOf="@+id/confirm_id_label"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+
+        <TextView
+            android:id="@+id/confirm_name_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/confirm_id_text"
+            android:layout_gravity="center_horizontal|top"
+            android:text="Name: "
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        <TextView
+            android:id="@+id/confirm_name_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignEnd="@+id/confirm_id_text"
+            android:layout_alignRight="@+id/confirm_id_text"
+            android:layout_below="@+id/confirm_id_text"
+            android:layout_gravity="center_horizontal|top"
+            android:layout_toRightOf="@+id/confirm_name_label"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+
+        <TextView
+            android:id="@+id/confirm_lat_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/confirm_name_text"
+            android:layout_gravity="center_horizontal|top"
+            android:text="Latitude: "
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        <TextView
+            android:id="@+id/confirm_lat_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignEnd="@+id/confirm_name_text"
+            android:layout_alignRight="@+id/confirm_name_text"
+            android:layout_below="@+id/confirm_name_text"
+            android:layout_gravity="center_horizontal|top"
+            android:layout_toEndOf="@+id/confirm_lat_label"
+            android:layout_toRightOf="@+id/confirm_lat_label"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+
+        <TextView
+            android:id="@+id/confirm_lng_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/confirm_lat_text"
+            android:layout_gravity="center_horizontal|top"
+            android:text="Longitude: "
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        <TextView
+            android:id="@+id/confirm_lng_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignEnd="@+id/confirm_lat_text"
+            android:layout_alignRight="@+id/confirm_lat_text"
+            android:layout_below="@+id/confirm_lat_text"
+            android:layout_gravity="center_horizontal|top"
+            android:layout_toEndOf="@+id/confirm_lng_label"
+            android:layout_toRightOf="@+id/confirm_lng_label"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+
+        <TextView
+            android:id="@+id/confirm_service_provider_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/confirm_lng_text"
+            android:layout_gravity="center_horizontal|top"
+            android:text="Service Provider: "
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        <TextView
+            android:id="@+id/confirm_service_provider_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignEnd="@+id/confirm_lng_text"
+            android:layout_alignRight="@+id/confirm_lng_text"
+            android:layout_below="@+id/confirm_lng_text"
+            android:layout_gravity="center_horizontal|top"
+            android:layout_toEndOf="@+id/confirm_service_provider_label"
+            android:layout_toRightOf="@+id/confirm_service_provider_label"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+
+        <TextView
+            android:id="@+id/confirm_sim_num_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/confirm_service_provider_text"
+            android:layout_gravity="center_horizontal|top"
+            android:text="Sim Card Number: "
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        <TextView
+            android:id="@+id/confirm_sim_num_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignEnd="@+id/confirm_service_provider_text"
+            android:layout_alignRight="@+id/confirm_service_provider_text"
+            android:layout_below="@+id/confirm_service_provider_text"
+            android:layout_gravity="center_horizontal|top"
+            android:layout_toEndOf="@+id/confirm_sim_num_label"
+            android:layout_toRightOf="@+id/confirm_sim_num_label"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+
+        <Button
+            android:id="@+id/submit_configuration_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/confirm_sim_num_text"
+            android:layout_centerHorizontal="true"
+            android:text="Submit Configuration Data" />
+
+    </RelativeLayout>
+
 
 </FrameLayout>

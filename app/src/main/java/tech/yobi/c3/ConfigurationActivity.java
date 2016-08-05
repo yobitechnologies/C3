@@ -73,6 +73,7 @@ public class ConfigurationActivity extends AppCompatActivity implements Location
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_configuration);
+        findViewById(R.id.main_content).requestFocus();
 
         //Requesting permissions
         if (Build.VERSION.SDK_INT >= 23 && PackageManager.PERMISSION_GRANTED != checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION)) {
@@ -100,7 +101,27 @@ public class ConfigurationActivity extends AppCompatActivity implements Location
         mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
+        mViewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(final int i, final float v, final int i2) {
+            }
 
+            @Override
+            public void onPageSelected(final int i) {
+                if (i == 4) {
+                    ConfirmDetailsFragment fragment = (ConfirmDetailsFragment) mSectionsPagerAdapter.instantiateItem(mViewPager, i);
+                    if (fragment != null) {
+                        //Confirm details page is visible now: refresh values
+//                        Log.e("ConfirmDetailsFragment", "visible");
+                        fragment.refreshValues();
+                    }
+                }
+            }
+
+            @Override
+            public void onPageScrollStateChanged(final int i) {
+            }
+        });
     }
 
 
@@ -261,12 +282,14 @@ public class ConfigurationActivity extends AppCompatActivity implements Location
                             name = location.getLocality();
                             assert name != null;
                         } catch (Exception e) {
-                            name  = "";
+                            name = "";
                             Toast.makeText(getContext(), "Could not get name from coordinates", Toast.LENGTH_LONG).show();
                         }
-                        if (name != null)
-                        { nameText.setText(name);}
-                        else {nameText.setText("");}
+                        if (name != null) {
+                            nameText.setText(name);
+                        } else {
+                            nameText.setText("");
+                        }
                     }
 
                 }
@@ -462,7 +485,16 @@ public class ConfigurationActivity extends AppCompatActivity implements Location
      */
     public static class ConfirmDetailsFragment extends Fragment {
 
+        TextView confirm_id_text;
+        TextView confirm_name_text;
+        TextView confirm_lat_text;
+        TextView confirm_lng_text;
+        TextView confirm_service_provider_text;
+        TextView confirm_sim_num_text;
+
+
         public ConfirmDetailsFragment() {
+//            Log.e("ConfirmDetailsFragment", "constructor");
         }
 
         /**
@@ -472,13 +504,56 @@ public class ConfigurationActivity extends AppCompatActivity implements Location
             ConfirmDetailsFragment fragment = new ConfirmDetailsFragment();
             Bundle args = new Bundle();
             fragment.setArguments(args);
+//            Log.e("ConfirmDetailsFragment", "newInstance");
             return fragment;
+        }
+
+        public void refreshValues() {
+//            Log.e("ConfirmDetailsFragment", "Refreshvalues");
+            if (configurationManager.getId() != 0) {
+                confirm_id_text.setText(Integer.toString(configurationManager.getId()));
+            } else {
+                confirm_id_text.setText("N/A");
+            }
+            if (configurationManager.getName() != null) {
+                confirm_name_text.setText(configurationManager.getName());
+            } else {
+                confirm_name_text.setText("N/A");
+            }
+            if (configurationManager.getLatitude() != 0) {
+                confirm_lat_text.setText(Double.toString(configurationManager.getLatitude()));
+            } else {
+                confirm_lat_text.setText("N/A");
+            }
+            if (configurationManager.getLongitude() != 0) {
+                confirm_lng_text.setText(Double.toString(configurationManager.getLongitude()));
+            } else {
+                confirm_lng_text.setText("N/A");
+            }
+            if (configurationManager.getCarrier() != null) {
+                confirm_service_provider_text.setText(configurationManager.getCarrier());
+            } else {
+                confirm_service_provider_text.setText("N/A");
+            }
+            if (configurationManager.getSimNumber() != null) {
+                confirm_sim_num_text.setText(configurationManager.getSimNumber());
+            } else {
+                confirm_sim_num_text.setText("N/A");
+            }
         }
 
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_confirm_details, container, false);
+
+            confirm_id_text = (TextView) rootView.findViewById(R.id.confirm_id_text);
+            confirm_name_text = (TextView) rootView.findViewById(R.id.confirm_name_text);
+            confirm_lat_text = (TextView) rootView.findViewById(R.id.confirm_lat_text);
+            confirm_lng_text = (TextView) rootView.findViewById(R.id.confirm_lng_text);
+            confirm_service_provider_text = (TextView) rootView.findViewById(R.id.confirm_service_provider_text);
+            confirm_sim_num_text = (TextView) rootView.findViewById(R.id.confirm_sim_num_text);
+
             return rootView;
         }
     }
