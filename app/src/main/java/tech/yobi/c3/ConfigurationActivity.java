@@ -37,9 +37,19 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class ConfigurationActivity extends AppCompatActivity implements LocationListener {
 
@@ -491,6 +501,7 @@ public class ConfigurationActivity extends AppCompatActivity implements Location
         TextView confirm_lng_text;
         TextView confirm_service_provider_text;
         TextView confirm_sim_num_text;
+        Button submit_configuration_button;
 
 
         public ConfirmDetailsFragment() {
@@ -553,6 +564,55 @@ public class ConfigurationActivity extends AppCompatActivity implements Location
             confirm_lng_text = (TextView) rootView.findViewById(R.id.confirm_lng_text);
             confirm_service_provider_text = (TextView) rootView.findViewById(R.id.confirm_service_provider_text);
             confirm_sim_num_text = (TextView) rootView.findViewById(R.id.confirm_sim_num_text);
+            submit_configuration_button = (Button) rootView.findViewById(R.id.submit_configuration_button);
+
+            submit_configuration_button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    // Instantiating the RequestQueue.
+                    RequestQueue queue = Volley.newRequestQueue(getContext());
+
+                    // Generating the URL
+                    StringBuilder urlBuilder = new StringBuilder();
+                    urlBuilder.append(CredentialsManager.CONFIG_SUBMIT_URL);
+                    // Adding parameters
+                    urlBuilder.append("?");
+                    Map<String, String> params = configurationManager.getParams();
+                    for (String key : params.keySet()) {
+                        urlBuilder.append(key);
+                        urlBuilder.append("=");
+                        urlBuilder.append(params.get(key));
+                        urlBuilder.append("&");
+                    }
+                    urlBuilder.setLength(urlBuilder.length() - 1);
+                    String url = urlBuilder.toString();
+
+                    // Request a string response from the provided URL.
+                    StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                            new Response.Listener<String>() {
+                                @Override
+                                public void onResponse(String response) {
+                                    // Display the first 500 characters of the response string.
+                                    Log.e("VOLLEY", "Response is: " + response);
+                                    Toast.makeText(getContext(), response, Toast.LENGTH_SHORT).show();
+                                }
+                            }, new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            Log.e("VOLLEY", "That didn't work:" + error.getMessage());
+                            Toast.makeText(getContext(), "Error sending request to server", Toast.LENGTH_LONG).show();
+                        }
+                    }) {
+                        @Override
+                        protected Map<String, String> getParams() throws AuthFailureError {
+                            // Adding parameters to request
+                            return configurationManager.getParams();
+                        }
+                    };
+                    // Add the request to the RequestQueue.
+                    queue.add(stringRequest);
+                }
+            });
 
             return rootView;
         }

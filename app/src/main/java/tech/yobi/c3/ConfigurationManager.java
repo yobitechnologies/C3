@@ -1,5 +1,8 @@
 package tech.yobi.c3;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class ConfigurationManager {
 
     public int id;
@@ -63,5 +66,18 @@ public class ConfigurationManager {
 
     public void setSimNumber(String simNumber) {
         this.simNumber = simNumber;
+    }
+    
+    public Map<String,String> getParams() {
+        Map<String, String> params = new HashMap<String, String>();
+
+        params.put("id", Integer.toString(getId()));
+        params.put("name", getName());
+        params.put("latitude", Double.toString(getLatitude()));
+        params.put("longitude", Double.toString(getLongitude()));
+        params.put("service_provider", getCarrier());
+        params.put("sim_number", getSimNumber());
+
+        return params;
     }
 }
