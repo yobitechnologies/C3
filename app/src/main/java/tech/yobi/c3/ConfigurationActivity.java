@@ -46,6 +46,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -581,7 +582,14 @@ public class ConfigurationActivity extends AppCompatActivity implements Location
                     for (String key : params.keySet()) {
                         urlBuilder.append(key);
                         urlBuilder.append("=");
-                        urlBuilder.append(params.get(key));
+//                        urlBuilder.append(params.get(key));
+
+                        try {
+                            urlBuilder.append(java.net.URLEncoder.encode(params.get(key),"UTF-8"));
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+
                         urlBuilder.append("&");
                     }
                     urlBuilder.setLength(urlBuilder.length() - 1);
